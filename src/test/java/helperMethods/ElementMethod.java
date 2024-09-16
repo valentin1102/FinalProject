@@ -1,5 +1,6 @@
 package helperMethods;
 
+import lombok.AllArgsConstructor;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -9,19 +10,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+@AllArgsConstructor
 public class ElementMethod {
 
     public WebDriver driver;
 
-    public ElementMethod(WebDriver driver) {
-        this.driver = driver;
-    }
 
     public void waitForElementVisible(WebElement element) {
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); //asteapta maxim 10 secunde
         wait.until(ExpectedConditions.visibilityOf(element));
-
     }
 
     public void clickElement(WebElement element) {

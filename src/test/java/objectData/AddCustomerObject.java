@@ -1,5 +1,10 @@
 package objectData;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class AddCustomerObject extends GeneralObject {
 
 
@@ -9,36 +14,5 @@ public class AddCustomerObject extends GeneralObject {
 
     private String firstNameValue;
     private String lastNameValue;
-
-    public String getPostCodeValue() {
-        return postCodeValue;
-    }
-
-    public void setPostCodeValue(String postCodeValue) {
-        this.postCodeValue = postCodeValue;
-    }
-
     private String postCodeValue;
-
-    public String getFirstNameValue() {
-        return firstNameValue;
-    }
-
-    public void setFirstNameValue(String firstNameValue) {
-        this.firstNameValue = firstNameValue;
-    }
-
-    public String getLastNameValue() {
-        return lastNameValue;
-    }
-
-    public void setLastNameValue(String lastNameValue) {
-        this.lastNameValue = lastNameValue;
-    }
-
-
-
-
-
-
 }
