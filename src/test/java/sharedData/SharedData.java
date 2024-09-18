@@ -14,9 +14,15 @@ public class SharedData {
 
     @BeforeMethod
     public void prepareEnvironment(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new");
-        driver = new ChromeDriver(options);
+        boolean ci_cd = Boolean.parseBoolean(System.getProperty("CI_CD"));
+        if (ci_cd){
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless=new");
+            driver = new ChromeDriver(options);
+        }
+        else {
+            driver = new ChromeDriver();
+        }
         driver.get("https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login");
         driver.manage().window().maximize();
         LoggerUtility.info("The browser is open with success");
@@ -24,8 +30,8 @@ public class SharedData {
 
     @AfterMethod
     public void clearEnvironment(){
-        driver.quit();
-        LoggerUtility.info("The browser is closed with success");
+        //driver.quit();
+        //LoggerUtility.info("The browser is closed with success");
    }
 
     public WebDriver getDriver() {

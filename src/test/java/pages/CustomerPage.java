@@ -38,11 +38,14 @@ public class CustomerPage extends BasePage {
     @FindBy(xpath = "//button[contains(text(),'Withdrawl')]")
     private WebElement withdrawMenu;
 
-    @FindBy(xpath = "//input[@type='number']")
+    @FindBy(xpath = "//label[text()='Amount to be Withdrawn :']/following-sibling::input[@ng-model='amount']")
     private WebElement amountWithdraw;
 
     @FindBy(xpath = "//button[text()='Withdraw']")
     private WebElement withdrawButton;
+
+    @FindBy(xpath = "//span[@ng-show='message' and contains(text(), 'Transaction successful')]")
+    private WebElement withdrawSuccessful;
 
     public void customerDeposit(){
         elementMethod.clickElement(userSelect);
@@ -65,13 +68,15 @@ public class CustomerPage extends BasePage {
     public void customerWithdraw()  {
         elementMethod.clickElement(withdrawMenu);
         LoggerUtility.info("The user clicked on the withdraw menu");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(amountWithdraw));
-        elementMethod.fillElement(amountWithdraw, "1000");
+        elementMethod.waitForElementVisible(amountWithdraw);
+        elementMethod.clickElement(amountWithdraw);
         LoggerUtility.info("The user clicked on the field to input the amount to withdraw");
         elementMethod.fillElement(amountWithdraw, "1000");
         LoggerUtility.info("The user user wrote the amount of 1000 dollars");
         elementMethod.clickElement(withdrawButton);
+        LoggerUtility.info("The user clicked on the withdraw button");
+        Assert.assertEquals(withdrawSuccessful.getText(), "Transaction successful");
+        LoggerUtility.info("The user successfully withdrew 1000 dollars");
     }
 
 }
