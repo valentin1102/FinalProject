@@ -15,6 +15,7 @@ public class CustomerDepositTest extends SharedData {
         CustomerPage customerPage = new CustomerPage(getDriver());
         customerPage.customerDeposit();
         customerPage.customerWithdraw();
+        customerPage.transactionsCustomerMenu();
 
 
     }

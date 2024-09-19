@@ -30,8 +30,8 @@ public class SharedData {
 
     @AfterMethod
     public void clearEnvironment(){
-        //driver.quit();
-        //LoggerUtility.info("The browser is closed with success");
+        driver.quit();
+        LoggerUtility.info("The browser is closed with success");
    }
 
     public WebDriver getDriver() {

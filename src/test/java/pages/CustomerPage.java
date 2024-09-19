@@ -1,5 +1,6 @@
 package pages;
 
+import io.opentelemetry.sdk.metrics.internal.view.ExplicitBucketHistogramAggregation;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -47,6 +48,15 @@ public class CustomerPage extends BasePage {
     @FindBy(xpath = "//span[@ng-show='message' and contains(text(), 'Transaction successful')]")
     private WebElement withdrawSuccessful;
 
+    @FindBy(xpath = "//button[contains(text(),'Transactions')]")
+    private WebElement transactionsMenu;
+
+    @FindBy(xpath = "//button[text()='Reset']")
+    private WebElement resetButton;
+
+    @FindBy(xpath = "//button[text()='Logout']")
+    private WebElement logoutButton;
+
     public void customerDeposit(){
         elementMethod.clickElement(userSelect);
         LoggerUtility.info("The user clicked to select their user from the list");
@@ -77,6 +87,15 @@ public class CustomerPage extends BasePage {
         LoggerUtility.info("The user clicked on the withdraw button");
         Assert.assertEquals(withdrawSuccessful.getText(), "Transaction successful");
         LoggerUtility.info("The user successfully withdrew 1000 dollars");
+    }
+
+    public void transactionsCustomerMenu(){
+        elementMethod.clickElement(transactionsMenu);
+        LoggerUtility.info("The user clicked on the Transactions menu");
+        elementMethod.clickElement(resetButton);
+        LoggerUtility.info("The user clicked on the Reset button in the Transactions menu");
+        elementMethod.clickElement(logoutButton);
+        LoggerUtility.info("The user clicked on logout button");
     }
 
 }
